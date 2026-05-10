@@ -22,8 +22,7 @@ Some engines choose to combine `Put` and `Delete` into a single operation called
 > For this project, we assume the LSM tree is using a `leveled compaction algorithm`, which is commonly used in real-world systems.
 
 ### Write Path
-
-![lsm tree](./github/assets/lsm-diagram.svg)
+![lsm tree](.github/assets/lsm-diagram.svg)
 
 #### The write path of LSM contains four steps:
 
@@ -34,7 +33,7 @@ Some engines choose to combine `Put` and `Delete` into a single operation called
 
 ### Read Path
 
-![lsm tree](./github/assets/lsm-read-flow.svg)
+![lsm tree](.github/assets/lsm-read-flow.svg)
 
 When we want to read a key,
 1. We will first probe all the mem-tables from the latest to the oldest.
