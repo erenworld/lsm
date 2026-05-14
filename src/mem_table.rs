@@ -42,4 +42,9 @@ impl MemTable {
     pub fn create_with_wal(_id: usize, _path: impl AsRef<Path>) -> Result<Self> {
         unimplemented!()
     }
+
+    // Recover a mem-table from WAL
+    pub fn recover_from_wal(_id: usize, _path: impl AsRef<Path>) -> Result<Self> {
+        unimplemented!()
+    }
 }
