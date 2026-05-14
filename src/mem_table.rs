@@ -91,4 +91,9 @@ impl MemTable {
         }
         Ok(())
     }
+
+    // Get an iterator over a range of keys.
+    pub fn scan(&self, _lower: Bound<&[u8]>, _upper: Bound<&[u8]>) -> MemTableIterator {
+        unimplemented!()
+    }
 }
