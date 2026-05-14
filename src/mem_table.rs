@@ -15,9 +15,19 @@ use crate::key::KeySlice;
 use crate::table::SsTableBuilder;
 use crate::wal::wal;
 pub struct MemTable {
-    map: Arc<SkipMap<Bytes, Bytes>>,
+    // insert:  O(log n)
+    // search:  O(log n)
+    map: Arc<SkipMap<Bytes, Bytes>>, 
     wal: Option<Wal>,
     id: usize,
     approximate_size: Arc<AtomicUsize>,
 }
 
+// scan [a, z)
+pub(crate) fn map_bound(bound: Bound<&[u8]>) -> Bound<Bytes> {
+    match bound {
+        Bound::Included(x) => Bound::Included(Bytes::copy_from_slice(x)),
+        Bound::Excluded(x) => Bound::Excluded(Bytes::copy_from_slice(x)),
+        Bound::Unbounded => Bound::Unbounded,
+    }
+}
