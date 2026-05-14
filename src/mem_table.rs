@@ -79,4 +79,9 @@ impl MemTable {
     pub fn put(&self, _key: &[u8], _value: &[u8]) -> Result<()> {
         unimplemented!()
     }
+
+    // Helper to make multiple writes
+    pub fn put_batch(&self, _data: &[(KeySlice, &[u8])]) -> Result<()> {
+        unimplemented!()
+    }
 }
