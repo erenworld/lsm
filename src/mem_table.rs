@@ -33,17 +33,17 @@ pub(crate) fn map_bound(bound: Bound<&[u8]>) -> Bound<Bytes> {
 }
 
 impl MemTable {
-    // Create a new mem-table
+    // Create a new mem-table.
     pub fn create(_id: usize) -> Self {
         unimplemented!()
     }
 
-    // Create a new mem-table from WAL
+    // Create a new mem-table from WAL.
     pub fn create_with_wal(_id: usize, _path: impl AsRef<Path>) -> Result<Self> {
         unimplemented!()
     }
 
-    // Recover a mem-table from WAL
+    // Recover a mem-table from WAL.
     pub fn recover_from_wal(_id: usize, _path: impl AsRef<Path>) -> Result<Self> {
         unimplemented!()
     }
@@ -56,7 +56,7 @@ impl MemTable {
         self.get(key)
     }
 
-    //  you do not need to consider the bound exclude/include logic. Simply provide `DEFAULT_TS` as the
+    // you do not need to consider the bound exclude/include logic. Simply provide `DEFAULT_TS` as the
     // timestamp for the key-ts pair.
     pub fn for_testing_scan_slice(
         &self,
@@ -64,5 +64,19 @@ impl MemTable {
         upper: Bound<&[u8]>
     ) -> MemTableIterator {
         self.scan(lower, upper)
+    }
+
+    // Get a value by key.
+    pub fn get(&self, _key: &[u8]) -> Option<Bytes> {
+        unimplemented!()
+    }
+
+    // Put a key-value pairs into the mem-table.
+    //
+    // simply put the key-value pair into the skipmap.
+    // also flush the data to WAL.
+    // modify the function to use the batch API.
+    pub fn put(&self, _key: &[u8], _value: &[u8]) -> Result<()> {
+        unimplemented!()
     }
 }
