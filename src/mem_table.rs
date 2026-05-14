@@ -31,3 +31,10 @@ pub(crate) fn map_bound(bound: Bound<&[u8]>) -> Bound<Bytes> {
         Bound::Unbounded => Bound::Unbounded,
     }
 }
+
+impl MemTable {
+    // create a new mem-tables.
+    pub fn create(_id: usize) -> Self {
+        unimplemented!()
+    }
+}
