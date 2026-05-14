@@ -47,4 +47,22 @@ impl MemTable {
     pub fn recover_from_wal(_id: usize, _path: impl AsRef<Path>) -> Result<Self> {
         unimplemented!()
     }
+
+    pub fn for_testing_put_slice(&self, key: &[u8], value: &[u8]) -> Result<()> {
+        self.put(key, value)
+    }
+
+    pub fn for_testing_get_slice(&self, key: &[u8]) -> Option<Bytes> {
+        self.get(key)
+    }
+
+    //  you do not need to consider the bound exclude/include logic. Simply provide `DEFAULT_TS` as the
+    // timestamp for the key-ts pair.
+    pub fn for_testing_scan_slice(
+        &self,
+        lower: Bound<&[u8]>,
+        upper: Bound<&[u8]>
+    ) -> MemTableIterator {
+        self.scan(lower, upper)
+    }
 }
