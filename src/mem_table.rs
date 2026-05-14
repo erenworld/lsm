@@ -23,7 +23,7 @@ pub struct MemTable {
     approximate_size: Arc<AtomicUsize>,
 }
 
-// scan [a, z)
+// Scan [a, z)
 pub(crate) fn map_bound(bound: Bound<&[u8]>) -> Bound<Bytes> {
     match bound {
         Bound::Included(x) => Bound::Included(Bytes::copy_from_slice(x)),
@@ -33,8 +33,13 @@ pub(crate) fn map_bound(bound: Bound<&[u8]>) -> Bound<Bytes> {
 }
 
 impl MemTable {
-    // create a new mem-tables.
+    // Create a new mem-table
     pub fn create(_id: usize) -> Self {
+        unimplemented!()
+    }
+
+    // Create a new mem-table from WAL
+    pub fn create_with_wal(_id: usize, _path: impl AsRef<Path>) -> Result<Self> {
         unimplemented!()
     }
 }
