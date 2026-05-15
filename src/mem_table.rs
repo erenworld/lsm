@@ -96,4 +96,9 @@ impl MemTable {
     pub fn scan(&self, _lower: Bound<&[u8]>, _upper: Bound<&[u8]>) -> MemTableIterator {
         unimplemented!()
     }
+
+    // Flush the mem-table into the SSTable.
+    pub fn flush(&self, _builder: &mut SsTableBuilder) -> Result<()> {
+        unimplemented!()
+    }
 }
