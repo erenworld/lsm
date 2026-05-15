@@ -101,4 +101,18 @@ impl MemTable {
     pub fn flush(&self, _builder: &mut SsTableBuilder) -> Result<()> {
         unimplemented!()
     }
+
+    pub fn id(&self) -> usize {
+        self.id
+    }
+
+    pub fn approximate_size(&self) -> usize {
+        self.approximate_size
+            .load(std::sync::atomic::Ordering::Relaxed)
+    }
+
+    // Only use this function when closing the db
+    pub fn is_empty(&self) -> bool {
+        self.map.is_empty()
+    }
 }
