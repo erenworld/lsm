@@ -116,3 +116,19 @@ impl MemTable {
         self.map.is_empty()
     }
 }
+
+type SkipMapRangeIter<'a> =
+    crossbeam_skiplist::map::Range<'a, Bytes, (Bound<Bytes>, Bound<Bytes>), Bytes, Bytes>;
+
+// An iterator over a range of `SkipMap`. This is self-referential structure.
+#[self_referencing]
+pub struct MemTableIterator {
+    // stores a reference to the skipmap.
+    map: Arc<SkipMap<Bytes, Bytes>>,
+    // stores a skipmap iterator that refers to the lifetime of `MemTableIterator` itself.
+    #[borrows(map)]
+    #[not_covariant]
+    iter: SkipMapRangeIter<'this>,
+    // stores the current key-value pair.
+    item: (Bytes, Bytes)
+}
