@@ -132,3 +132,23 @@ pub struct MemTableIterator {
     // stores the current key-value pair.
     item: (Bytes, Bytes)
 }
+
+impl StorageIterator for MemTableIterator {
+    type KeyType<'a> = KeySlice<'a>;
+
+    fn value(&self) -> &[u8] {
+        unimplemented!()
+    }
+
+    fn key(&self) -> KeySlice<'_> {
+        unimplemented!()
+    }
+
+    fn is_valid(&self) -> bool {
+        unimplemented!()
+    }
+
+    fn next(&mut self) -> Result<()> {
+        unimplemented!()
+    }
+}
